@@ -8,5 +8,15 @@ namespace CommunityOfMars.Controllers
         {
             return View();
         }
+
+        public IActionResult FAQ()
+        {
+            return View();
+        }
+
+        public IActionResult Links()
+        {
+            return View();
+        }
     }
 }
