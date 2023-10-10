@@ -1,10 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Message
 @{
     ViewData["Title"] = "Messages";
 }
 <h2>Message board</h2>
-Here you can read messages from users, but not yet.
-<br />
+<br>
+@if (@Model != null)
+{
+    <p>
+        <span>Message</span><br>
+        To: @Model.Receiver
+        <br>
+        From: @Model.Sender
+        <br>
+        Subject: @Model.Title
+        <br>
+        Message: @Model.Body
+        <br>
+        Date: @Model.Date
+        <br>
+    </p>
+}
+<br>
 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Message">Compose Message</a>

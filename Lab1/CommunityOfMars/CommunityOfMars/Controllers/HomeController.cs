@@ -38,6 +38,12 @@ namespace CommunityOfMars.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Message(Message message)
+        {
+            return View("Messages", message);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -1,8 +1,19 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Message
 @{
     ViewData["Title"] = "Message";
 }
 <h2>Message form</h2>
-This will be the form to send a message to the message board, but not yet.
+
+<form method="post">
+    <label for="to">To</label>
+    <input id="to" name="Receiver"><br>
+    <label>From</label>
+    <input id="from" name="Sender"><br>
+    <label>Priority</label>
+    <input name="Priority">
+    <label>Subject</label>
+    <input name="Title">
+    <label>Message</label>
+    <input name="Body">
+    <input type="submit">
+</form>
