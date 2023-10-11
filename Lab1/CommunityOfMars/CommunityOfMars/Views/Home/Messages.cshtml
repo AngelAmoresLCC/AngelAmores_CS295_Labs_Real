@@ -8,9 +8,9 @@
 {
     <p>
         <span>Message</span><br>
-        To: @Model.Receiver
+        To: @Model.Receiver.UserName
         <br>
-        From: @Model.Sender
+        From: @Model.Sender.UserName
         <br>
         Subject: @Model.Title
         <br>
@@ -21,4 +21,4 @@
     </p>
 }
 <br>
-<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Message">Compose Message</a>
+<a asp-area="" asp-controller="Home" asp-action="Message">Compose Message</a>

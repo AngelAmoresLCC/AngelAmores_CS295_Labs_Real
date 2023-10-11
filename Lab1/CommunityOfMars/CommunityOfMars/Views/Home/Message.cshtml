@@ -5,16 +5,16 @@
 <h2>Message form</h2>
 
 <form method="post">
-    <label asp-for="Receiver">To</label>
-    <input asp-for="Receiver"><br>
+    <label asp-for="Receiver.UserName">To</label>
+    <input asp-for="Receiver.UserName"><br>
     <!--VS autocompletes 'for' to 'asp-for', so I just used that for convenience-->
-    <label asp-for="Sender">From</label>
-    <input asp-for="Sender"><br>
+    <label asp-for="Sender.UserName">From</label>
+    <input asp-for="Sender.UserName"><br>
     <label asp-for="Priority">Priority</label>
-    <input asp-for="Priority">
+    <input asp-for="Priority"><br>
     <label asp-for="Title">Subject</label>
-    <input asp-for="Title">
+    <input asp-for="Title"><br>
     <label asp-for="Body">Message</label>
-    <input asp-for="Body">
+    <input asp-for="Body"><br>
     <input type="submit">
 </form>

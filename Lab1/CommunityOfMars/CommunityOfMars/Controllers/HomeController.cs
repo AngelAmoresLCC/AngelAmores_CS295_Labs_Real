@@ -41,6 +41,7 @@ namespace CommunityOfMars.Controllers
         [HttpPost]
         public IActionResult Message(Message message)
         {
+            message.Date = DateOnly.FromDateTime(DateTime.Now);
             return View("Messages", message);
         }
 
