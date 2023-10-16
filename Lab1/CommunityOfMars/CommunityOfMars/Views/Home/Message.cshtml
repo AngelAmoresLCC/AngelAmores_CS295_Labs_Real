@@ -1,20 +1,43 @@
 ﻿@model Message
 @{
-    ViewData["Title"] = "Message";
+	ViewData["Title"] = "Message";
 }
-<h2>Message form</h2>
+<div class="container-fluid">
+	<div class="row">
+		<span class="col-sm-2"></span>
+		<h2 class="col-sm-6">Message form</h2>
+	</div>
+</div>
 
-<form method="post">
-    <label asp-for="Receiver.UserName">To</label>
-    <input asp-for="Receiver.UserName"><br>
-    <!--VS autocompletes 'for' to 'asp-for', so I just used that for convenience-->
-    <label asp-for="Sender.UserName">From</label>
-    <input asp-for="Sender.UserName"><br>
-    <label asp-for="Priority">Priority</label>
-    <input asp-for="Priority"><br>
-    <label asp-for="Title">Subject</label>
-    <input asp-for="Title"><br>
-    <label asp-for="Body">Message</label>
-    <input asp-for="Body"><br>
-    <input type="submit">
+<form method="post" class="container-fluid">
+	<div class="row p-2">
+		<span class="col-sm-2"></span>
+		<label asp-for="Receiver.UserName" class="col-sm-2">To:</label>
+		<input asp-for="Receiver.UserName" class="col-sm-5">
+		<!--VS autocompletes 'for' to 'asp-for', so I just used that for convenience-->
+	</div>
+	<div class="row p-2">
+		<span class="col-sm-2"></span>
+		<label asp-for="Sender.UserName" class="col-sm-2">From:</label>
+		<input asp-for="Sender.UserName" class="col-sm-5">
+	</div>
+	<div class="row p-2">
+		<span class="col-sm-2"></span>
+		<label asp-for="Priority" class="col-sm-2">Priority:</label>
+		<input asp-for="Priority" class="col-sm-5">
+	</div>
+	<div class="row p-2">
+		<span class="col-sm-2"></span>
+		<label asp-for="Title" class="col-sm-2">Subject:</label>
+		<input asp-for="Title" class="col-sm-5">
+	</div>
+	<div class="row p-2">
+		<span class="col-sm-2"></span>
+		<label asp-for="Body" class="col-sm-2">Message:</label>
+		<input asp-for="Body" class="col-sm-5">
+	</div>
+	<div class="row p-2">
+		<span class="col-sm-2"></span>
+		<input type="submit" class="col-sm-7 btn-primary" value="Send">
+	</div>
 </form>
