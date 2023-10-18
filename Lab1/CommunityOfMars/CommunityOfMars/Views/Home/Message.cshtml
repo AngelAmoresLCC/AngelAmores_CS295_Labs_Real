@@ -8,7 +8,7 @@
 		<h2 class="col-md-6">Compose Message</h2>
 	</div>
 </div>
-
+<br>
 <form method="post" class="container-fluid">
 	<div class="row p-2">
 		<span class="col-md-2"></span>
@@ -17,12 +17,12 @@
 			<label asp-for="Receiver.UserName" class="ms-1">To:</label>
 			<!--VS autocompletes 'for' to 'asp-for', so I just used that for convenience-->
 		</div>
-		<span class="d-md-none p-2"></span>
+		<span class="d-md-none p-2"></span> <!--This is for spacing on smaller screens-->
 		<div class="col-md-3 form-floating">
 			<input type="text" asp-for="Sender.UserName" class="form-control" placeholder="Your Name">
 			<label asp-for="Sender.UserName" class="ms-1">From:</label>
 		</div>
-		<span class="d-md-none p-2"></span>
+		<span class="d-md-none p-2"></span> <!--This is for spacing on smaller screens-->
 		<div class="col-md-2 form-floating">
 			<input type="number" asp-for="Priority" class="form-control" placeholder="0">
 			<label asp-for="Priority" class="ms-1">Priority:</label>
