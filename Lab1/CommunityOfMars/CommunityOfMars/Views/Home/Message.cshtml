@@ -14,32 +14,32 @@
 		<span class="col-md-2"></span>
 		<div class="col-md-3 form-floating">
 			<input type="text" asp-for="Receiver.UserName" class="form-control" placeholder="Their Name">
-			<label asp-for="Receiver.UserName" class="ms-1">To:</label>
+			<label asp-for="Receiver.UserName" class="ms-2">To :</label>
 			<!--VS autocompletes 'for' to 'asp-for', so I just used that for convenience-->
 		</div>
 		<span class="d-md-none p-2"></span> <!--This is for spacing on smaller screens-->
-		<div class="col-md-3 form-floating">
+		<div class="col-md-3 form-floating px-md-0"> <!--Keeps top 3 closer together on larger screens-->
 			<input type="text" asp-for="Sender.UserName" class="form-control" placeholder="Your Name">
-			<label asp-for="Sender.UserName" class="ms-1">From:</label>
+			<label asp-for="Sender.UserName" class="ms-2 ms-md-0">From :</label>
 		</div>
 		<span class="d-md-none p-2"></span> <!--This is for spacing on smaller screens-->
 		<div class="col-md-2 form-floating">
 			<input type="number" asp-for="Priority" class="form-control" placeholder="0">
-			<label asp-for="Priority" class="ms-1">Priority:</label>
+			<label asp-for="Priority" class="ms-2">Priority :</label>
 		</div>
 	</div>
 	<div class="row p-2">
 		<span class="col-md-2"></span>
 		<div class="col-md-8 form-floating">
 			<input type="text" asp-for="Title" class="form-control" placeholder="Subject">
-			<label asp-for="Title" class="ms-1">Subject:</label>
+			<label asp-for="Title" class="ms-2">Subject :</label>
 		</div>
 	</div>
 	<div class="row p-2">
 		<span class="col-md-2"></span>
 		<div class="col-md-8 form-floating">
 			<textarea asp-for="Body" class="form-control" placeholder="Message" maxlength="500" style="height:165px"></textarea>
-			<label asp-for="Body" class="ms-1">Message:</label>
+			<label asp-for="Body" class="ms-2">Message :</label>
 		</div>
 	</div>
 	<div class="row p-4">
