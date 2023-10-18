@@ -4,40 +4,46 @@
 }
 <div class="container-fluid">
 	<div class="row">
-		<span class="col-sm-2"></span>
-		<h2 class="col-sm-6">Message form</h2>
+		<span class="col-md-2"></span>
+		<h2 class="col-md-6">Compose Message</h2>
 	</div>
 </div>
 
 <form method="post" class="container-fluid">
 	<div class="row p-2">
-		<span class="col-sm-2"></span>
-		<label asp-for="Receiver.UserName" class="col-sm-2">To:</label>
-		<input asp-for="Receiver.UserName" class="col-sm-5">
-		<!--VS autocompletes 'for' to 'asp-for', so I just used that for convenience-->
+		<span class="col-md-2"></span>
+		<div class="col-md-3 form-floating">
+			<input type="text" asp-for="Receiver.UserName" class="form-control" placeholder="Their Name">
+			<label asp-for="Receiver.UserName" class="ms-1">To:</label>
+			<!--VS autocompletes 'for' to 'asp-for', so I just used that for convenience-->
+		</div>
+		<span class="d-md-none p-2"></span>
+		<div class="col-md-3 form-floating">
+			<input type="text" asp-for="Sender.UserName" class="form-control" placeholder="Your Name">
+			<label asp-for="Sender.UserName" class="ms-1">From:</label>
+		</div>
+		<span class="d-md-none p-2"></span>
+		<div class="col-md-2 form-floating">
+			<input type="number" asp-for="Priority" class="form-control" placeholder="0">
+			<label asp-for="Priority" class="ms-1">Priority:</label>
+		</div>
 	</div>
 	<div class="row p-2">
-		<span class="col-sm-2"></span>
-		<label asp-for="Sender.UserName" class="col-sm-2">From:</label>
-		<input asp-for="Sender.UserName" class="col-sm-5">
+		<span class="col-md-2"></span>
+		<div class="col-md-8 form-floating">
+			<input type="text" asp-for="Title" class="form-control" placeholder="Subject">
+			<label asp-for="Title" class="ms-1">Subject:</label>
+		</div>
 	</div>
 	<div class="row p-2">
-		<span class="col-sm-2"></span>
-		<label asp-for="Priority" class="col-sm-2">Priority:</label>
-		<input asp-for="Priority" class="col-sm-5">
+		<span class="col-md-2"></span>
+		<div class="col-md-8 form-floating">
+			<textarea asp-for="Body" class="form-control" placeholder="Message" maxlength="500" style="height:165px"></textarea>
+			<label asp-for="Body" class="ms-1">Message:</label>
+		</div>
 	</div>
-	<div class="row p-2">
-		<span class="col-sm-2"></span>
-		<label asp-for="Title" class="col-sm-2">Subject:</label>
-		<input asp-for="Title" class="col-sm-5">
-	</div>
-	<div class="row p-2">
-		<span class="col-sm-2"></span>
-		<label asp-for="Body" class="col-sm-2">Message:</label>
-		<input asp-for="Body" class="col-sm-5">
-	</div>
-	<div class="row p-2">
-		<span class="col-sm-2"></span>
-		<input type="submit" class="col-sm-7 btn-primary" value="Send">
+	<div class="row p-4">
+		<span class="col-md-2"></span>
+		<input type="submit" class="col-md-8 btn btn-primary" value="Send Message">
 	</div>
 </form>
