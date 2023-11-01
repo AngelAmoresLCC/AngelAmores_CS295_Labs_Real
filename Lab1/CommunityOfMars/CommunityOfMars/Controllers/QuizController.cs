@@ -7,22 +7,61 @@ namespace CommunityOfMars.Controllers
 	{
 		public Dictionary<int, string> Questions { get; set; }
 		public Dictionary<int, string> Answers { get; set; }
-		public IActionResult Index()
+
+		public QuizController()
 		{
-			return View();
+			Questions = new();
+			Answers = new();
+			AddQAPair(1, "The correct answer is 5", "5");
+			AddQAPair(2, "The correct answer is winter", "Winter");
 		}
 
-		public Quizzes LoadQuestions(Quizzes model)
+		public IActionResult Index()
+		{
+			var model = LoadQuestions();
+			return View(model);
+		}
+
+		[HttpPost]
+		public IActionResult Index(string answer1, string answer2)
+		{
+			var model = LoadQuestions();
+			model.UserAnswers[1] = answer1;
+			return View(model);
+		}
+
+		public bool AddQAPair(int id, string question, string answer) //Might cut this too
+		{
+			if (question == string.Empty || answer == string.Empty)
+				return false; //Fails if question or answer is empty
+			if (Questions.ContainsKey(id) || Answers.ContainsKey(id))
+				return false; //Fails if key already exists
+			Questions.Add(id, question);
+			Answers.Add(id, answer);
+			return true;
+		}
+
+		public bool RemoveQAPair(int id) //Might not need this at all, but I already made it so I'm keeping it
+		{
+			if (Questions.ContainsKey(id) && Answers.ContainsKey(id))
+			{
+				Questions.Remove(id);
+				Answers.Remove(id);
+				return true;
+			}
+			return false;
+		}
+
+		public Quizzes LoadQuestions() //Add parameter to specify what file to read from
 		{
 			// Temporary set of hard-coded questions
 			// In the future, these will be read in from a file
-			/*Questions.Add(1, "The correct answer is 5");
-			Answers.Add(1, "5");
-			Questions.Add(2, "The correct answer is winter");
-			Answers.Add(2, "Winter");*/
 			//TODO: load questions and answers into the model
-			/*model.Questions = Questions;
-			model.Answers = Answers;*/
+			Quizzes model = new();
+			model.Questions = Questions;
+			model.Answers = Answers;
+			foreach(var question in Questions)
+				model.UserAnswers.Add(question.Key, "");
 			return model;
 		}
 	}

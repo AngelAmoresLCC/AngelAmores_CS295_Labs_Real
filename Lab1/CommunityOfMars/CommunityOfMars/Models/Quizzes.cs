@@ -2,7 +2,27 @@
 {
 	public class Quizzes
 	{
-		public Dictionary<int, string> Questions { get; set; }
-		public Dictionary<int, string> Answers { get; set; }
+		public Dictionary<int, string> Questions { get; set; } = new();
+		public Dictionary<int, string> Answers { get; set; } = new();
+		public Dictionary<int, string> UserAnswers { get; set; } = new();
+
+		public Dictionary<int, bool> CheckAnswers()
+		{
+			Dictionary<int, bool> results = new();
+			foreach (var question in Questions)
+			{
+				int id = question.Key;
+				if (UserAnswers.ContainsKey(id))
+				{
+					if (UserAnswers[id] == Answers[id])
+						results[id] = true;
+					else
+						results[id] = false;
+				}
+				else
+					results[id] = false;
+			}
+			return results;
+		}
 	}
 }
