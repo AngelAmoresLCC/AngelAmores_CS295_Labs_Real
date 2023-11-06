@@ -23,10 +23,10 @@ namespace CommunityOfMars.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Index(string answer1, string answer2)
+		public IActionResult Index(Quizzes model)
 		{
-			var model = LoadQuestions();
-			model.UserAnswers[1] = answer1;
+			model = LoadQuestions(model);
+			model.IsCompleted = true;
 			return View(model);
 		}
 
@@ -62,6 +62,13 @@ namespace CommunityOfMars.Controllers
 			model.Answers = Answers;
 			foreach(var question in Questions)
 				model.UserAnswers.Add(question.Key, "");
+			return model;
+		}
+
+		public Quizzes LoadQuestions(Quizzes model) //For reloading questions into a completed quiz
+		{
+			model.Questions = Questions;
+			model.Answers = Answers;
 			return model;
 		}
 	}
