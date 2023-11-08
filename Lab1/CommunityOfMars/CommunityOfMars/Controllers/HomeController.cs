@@ -1,19 +1,23 @@
-﻿using CommunityOfMars.Models;
+﻿using CommunityOfMars.Data;
+using CommunityOfMars.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace CommunityOfMars.Controllers
 {
     public class HomeController : Controller
     {
+        MarsDBContext context;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(MarsDBContext c, ILogger<HomeController> logger)
         {
+            context = c;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string messageId)
         {
             return View();
         }
@@ -28,9 +32,14 @@ namespace CommunityOfMars.Controllers
             return View();
         }
 
-        public IActionResult Messages()
+        //TODO: Do something with the messageId
+        public IActionResult Messages(string messageId)
         {
-            return View();
+            var model = context.Messages
+                .Include(message => message.Sender)
+                .Include(message => message.Receiver)
+                .ToList();
+            return View(model);
         }
 
         public IActionResult Message()
@@ -42,7 +51,9 @@ namespace CommunityOfMars.Controllers
         public IActionResult Message(Message message)
         {
             message.Date = DateOnly.FromDateTime(DateTime.Now);
-            return View("Messages", message);
+            context.Messages.Add(message);
+            context.SaveChanges();
+            return RedirectToAction("Messages", new { messageId = message.MessageId});
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

@@ -4,7 +4,7 @@ namespace CommunityOfMars.Models
 {
     public class Message
     {
-        public int Id { get; set; }
+        public int MessageId { get; set; }
         public AppUser? Sender { get; set; }
         public AppUser? Receiver { get; set; }
         public int Priority { get; set; }
