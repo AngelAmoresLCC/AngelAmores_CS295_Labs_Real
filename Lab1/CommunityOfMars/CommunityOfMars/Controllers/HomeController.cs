@@ -57,7 +57,7 @@ namespace CommunityOfMars.Controllers
         {
             message.Date = DateOnly.FromDateTime(DateTime.Now);
             messagesRepo.StoreMessage(message);
-            return RedirectToAction("Messages", new { messageId = message.MessageId});
+            return RedirectToAction("Messages");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
