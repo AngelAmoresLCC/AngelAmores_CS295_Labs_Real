@@ -33,18 +33,19 @@ namespace CommunityOfMars.Controllers
         }
 
         //TODO: Do something with the messageId
-        public IActionResult Messages(string messageId = "")
+        public IActionResult Messages()
         {
-            var messages = new List<Message>();
-            if (messageId.Length > 0)
-            {
-                messages.Add(messagesRepo.GetMessageById(int.Parse(messageId)));
-            }
-            else
-            {
-                messages = messagesRepo.GetMessages();
-            }
+            var messages = messagesRepo.GetMessages();
             return View(messages);
+        }
+
+        [HttpPost]
+        public IActionResult Messages(string toname)
+        {
+            List<Message> messages = (from m in messagesRepo.GetMessages()
+                                      where m.Sender.UserName == toname
+                                      select m).ToList();
+            return View("Messages", messages);
         }
 
         public IActionResult Message()

@@ -21,6 +21,7 @@ namespace CommunityOfMars.Data
             return dbContext.Messages
                 .Include(message => message.Sender)
                 .Include(message => message.Receiver)
+                .OrderBy(message => message.Priority)
                 .ToList();
         }
 
