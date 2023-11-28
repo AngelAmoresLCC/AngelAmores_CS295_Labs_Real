@@ -397,3 +397,4 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 /Lab1/CommunityOfMars/CommunityOfMars/appsettings.Development.json
+/Lab1/CommunityOfMars/CommunityOfMars/appsettings.Production.json

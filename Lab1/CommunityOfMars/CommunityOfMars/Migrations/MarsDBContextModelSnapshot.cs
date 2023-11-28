@@ -30,7 +30,7 @@ namespace CommunityOfMars.Migrations
 
                     b.HasKey("AppUserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("CommunityOfMars.Models.Message", b =>
@@ -63,7 +63,7 @@ namespace CommunityOfMars.Migrations
 
                     b.HasIndex("SenderAppUserId");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Messages", (string)null);
                 });
 
             modelBuilder.Entity("CommunityOfMars.Models.Message", b =>

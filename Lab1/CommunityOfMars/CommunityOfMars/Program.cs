@@ -9,6 +9,7 @@ var connectionString = builder.Configuration.GetConnectionString("MySqlConnectio
 
 builder.Services.AddDbContext<MarsDBContext>(options =>
 	options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+builder.Services.AddTransient<IMessagesRepository, MessagesRepository>();
 
 var app = builder.Build();
 

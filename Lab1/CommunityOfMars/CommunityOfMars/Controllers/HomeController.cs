@@ -8,13 +8,13 @@ namespace CommunityOfMars.Controllers
 {
     public class HomeController : Controller
     {
-        MarsDBContext context;
-        private readonly ILogger<HomeController> _logger;
+        //MarsDBContext context;
+        IMessagesRepository messagesRepo;
 
-        public HomeController(MarsDBContext c, ILogger<HomeController> logger)
+        public HomeController(IMessagesRepository m)
         {
-            context = c;
-            _logger = logger;
+            //context = c;
+            messagesRepo = m;
         }
 
         public IActionResult Index(string messageId)
@@ -33,13 +33,18 @@ namespace CommunityOfMars.Controllers
         }
 
         //TODO: Do something with the messageId
-        public IActionResult Messages(string messageId)
+        public IActionResult Messages(string messageId = "")
         {
-            var model = context.Messages
-                .Include(message => message.Sender)
-                .Include(message => message.Receiver)
-                .ToList();
-            return View(model);
+            var messages = new List<Message>();
+            if (messageId.Length > 0)
+            {
+                messages.Add(messagesRepo.GetMessageById(int.Parse(messageId)));
+            }
+            else
+            {
+                messages = messagesRepo.GetMessages();
+            }
+            return View(messages);
         }
 
         public IActionResult Message()
@@ -51,9 +56,8 @@ namespace CommunityOfMars.Controllers
         public IActionResult Message(Message message)
         {
             message.Date = DateOnly.FromDateTime(DateTime.Now);
-            context.Messages.Add(message);
-            context.SaveChanges();
-            return RedirectToAction("Messages", new { messageId = message.MessageId});
+            messagesRepo.StoreMessage(message);
+            return RedirectToAction("Messages");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
